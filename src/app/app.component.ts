@@ -32,12 +32,6 @@ export class AppComponent implements OnInit {
   @ViewChild('bookingChart') test: ElementRef<HTMLCanvasElement>;
 
   ngOnInit(): void {
-    this.dataService.getTodo('pickup').subscribe(m => this.pickups = m)
-    this.dataService.getTodo('return').subscribe(m => this.returns = m)
-    this.dataService.getTodo('over-due-event').subscribe(m => this.overdue = m)
-    this.dataService.getTodo('damage').subscribe((m: any) => this.damage = m)
-    this.dataService.getTodo('open-amount-bookings').subscribe((m: any) => this.returnOpen = m)
-    this.dataService.getTodo('voucher').subscribe((m: any) => this.voucher = m)
     this.countries = [
       { id: 85, name: 'Germany' },
       { id: 78, name: 'France' },
@@ -160,6 +154,9 @@ export class AppComponent implements OnInit {
     this.dataService.getTodo('damage').subscribe((m: any) => this.damage = m)
     this.dataService.getTodo('open-amount-bookings').subscribe((m: any) => this.returnOpen = m)
     this.dataService.getTodo('voucher').subscribe((m: any) => this.voucher = m)
+    this.dataService.getRevenue({ date: 1 }).subscribe((m: any) => this.combineRevenue(m))
+    this.dataService.getCustomer({}).subscribe((m: any) => this.combineBookingNCustomer(m, 'customerData'))
+    this.dataService.getBooking({}).subscribe((m: any) => this.combineBookingNCustomer(m, 'bookingData'))
   }
 
 }
