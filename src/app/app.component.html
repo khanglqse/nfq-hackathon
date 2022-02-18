@@ -76,7 +76,7 @@
               <tbody>
                 <tr *ngIf="!pickups.items?.length"><td colspan="4">No Data Available</td></tr>
                 <tr *ngFor="let item of pickups?.items">
-                  <td><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/' + item.booking_number}}">{{ item.booking_number }}</a></td>
+                  <td><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/orders/' + item.booking_number}}">{{ item.booking_number }}</a></td>
                   <td>{{ item.station }}</td>
                   <td>{{ item.plate }}</td>
                   <td><a target="_blank" href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/pickups/' + item.booking_number}}"><button>Pickup</button></a></td>
@@ -98,10 +98,10 @@
               <tbody>
                 <tr *ngIf="!returns.items?.length"><td colspan="4">No Data Available</td></tr>
                 <tr *ngFor="let item of returns?.items">
-                  <td><a  target="_blank" href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/' + item.booking_number}}">{{ item.booking_number }}</a></td>
+                  <td><a  target="_blank" href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/orders/' + item.booking_number}}">{{ item.booking_number }}</a></td>
                   <td>{{ item.station }}</td>
                   <td>{{ item.plate }}</td>
-                  <td><a  target="_blank" href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/pickups/' + item.booking_number}}"><button>Return</button></a></td>
+                  <td><a  target="_blank" href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/returns/' + item.booking_number}}"><button>Return</button></a></td>
                 </tr>
             </table>
           </div>
@@ -141,7 +141,7 @@
               <tbody>
                 <tr *ngIf="!returnOpen.items?.length"><td colspan="4">No Data Available</td></tr>
                 <tr *ngFor="let item of returnOpen?.items">
-                  <td class=""><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com' + item.url}}">{{ item.order_number }}</a></td>
+                  <td class=""><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/orders/' + item.order_number}}">{{ item.order_number }}</a></td>
                   <td>{{ item.open_amount }}</td>
                   <td>{{ item.customer }}</td>
                   <td><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com' + item.url}}"><button>Payment</button></a></td>
