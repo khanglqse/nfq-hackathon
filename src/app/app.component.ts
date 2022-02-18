@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
         display: true,
         position: 'bottom',
       },
-    }
+    },
   };
 
   public pieChartType: ChartType = 'pie';
@@ -101,7 +101,7 @@ export class AppComponent implements OnInit {
     if (chart === 'todo') {
       this.dataService.getTodo('pickup', filterModel).subscribe((m: any) => this.pickups = m)
       this.dataService.getTodo('return', filterModel).subscribe((m: any) => this.returns = m)
-      this.dataService.getTodo('open', filterModel).subscribe((m: any) => this.returns = m)
+      this.dataService.getTodo('over-due-event', filterModel).subscribe((m: any) => this.overdue = m)
       this.dataService.getTodo('damage', filterModel).subscribe((m: any) => this.damage = m)
       this.dataService.getTodo('open-amount-bookings', filterModel).subscribe((m: any) => this.returnOpen = m)
       this.dataService.getTodo('voucher', filterModel).subscribe((m: any) => this.voucher = m)
@@ -154,9 +154,12 @@ export class AppComponent implements OnInit {
     type === 'customerData' ? this.customerData = result : this.bookingData = result
   }
   initChart() {
-    this.dataService.getRevenue({ date: 1 }).subscribe((m: any) => this.combineRevenue(m))
-    this.dataService.getCustomer({}).subscribe((m: any) => this.combineBookingNCustomer(m, 'customerData'))
-    this.dataService.getBooking({}).subscribe((m: any) => this.combineBookingNCustomer(m, 'bookingData'))
+    this.dataService.getTodo('pickup').subscribe(m => this.pickups = m)
+    this.dataService.getTodo('return').subscribe(m => this.returns = m)
+    this.dataService.getTodo('over-due-event').subscribe(m => this.overdue = m)
+    this.dataService.getTodo('damage').subscribe((m: any) => this.damage = m)
+    this.dataService.getTodo('open-amount-bookings').subscribe((m: any) => this.returnOpen = m)
+    this.dataService.getTodo('voucher').subscribe((m: any) => this.voucher = m)
   }
 
 }
