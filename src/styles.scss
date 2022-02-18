@@ -1,0 +1,52 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-primary {
+    --tw-border-opacity: 1;
+    border-color: rgba(107,187,174,var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgba(107,187,174,var(--tw-bg-opacity));
+    display: inline-block;
+    border-radius: 0.25rem;
+    border-width: 2px;
+    border-style: solid;
+    padding: 0.5rem 1.25rem;
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    line-height: 1.25rem;
+    --tw-text-opacity: 1;
+    color: rgba(255,255,255,var(--tw-text-opacity));
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+body {
+    background-color:gainsboro;
+}
+.box {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    min-height:400px;
+    padding: 20px;
+    background-color:white;
+    .header {
+        display: flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom: 20px;
+       
+        .flex {
+            display: flex;
+            align-items:center;
+            > * {
+                margin-left: 8px;
+            }
+        }
+    }
+}
+
+ng-select {
+    min-width: 120px;
+    font-size: 12px !important;
+}

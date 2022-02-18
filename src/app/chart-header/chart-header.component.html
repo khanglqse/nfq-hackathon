@@ -1,0 +1,51 @@
+<div class="box">
+  <div class="header">
+    <div class="font-bold"><ng-content select="[title]"></ng-content></div>
+    <div class="flex">
+      <ng-container *ngIf="!dateRange.length">
+        <ng-select
+          [(ngModel)]="selectedType"
+          [items]="[
+            { id: 'station', name: 'By Station' },
+            { id: 'country', name: 'By Country' }
+          ]"
+          bindLabel="name"
+          bindValue="id"
+          [clearable]="false"
+        >
+        </ng-select>
+        <ng-select
+          *ngIf="selectedType === 'station' || !selectedType"
+          [items]="stations"
+          bindLabel="name"
+          [(ngModel)]="selectedStation"
+          (change)="handleFilterChange('station_id', $event)"
+          bindValue="id"
+
+        >
+        </ng-select>
+        <ng-select
+          *ngIf="selectedType === 'country'"
+          [items]="countries"
+          bindLabel="name"
+          [(ngModel)]="selectedCountry"
+          (change)="handleFilterChange('country_id', $event)"
+          bindValue="id"
+        >
+        </ng-select>
+      </ng-container>
+      <ng-select
+        *ngIf="dateRange.length"
+        [items]="dateRange"
+        bindLabel="name"
+        [(ngModel)]="selectedDate"
+        (change)="handleFilterChange('date', $event)"
+        [clearable]="false"
+        bindValue="id"
+      >
+      </ng-select>
+      <div class="btn btn-primary">Export</div>
+    </div>
+  </div>
+  <ng-content select=".body"></ng-content>
+</div>

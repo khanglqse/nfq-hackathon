@@ -1,0 +1,136 @@
+<div class="navbar">
+  <div class="left">
+    <div class="logo">
+      <img
+        src="https://backoffice-uat.staging.roadsurfer.com/img/ic-toplogo.svg"
+      />
+    </div>
+    <div class="togle-menu">
+      <i>icon</i>
+      Menu
+    </div>
+  </div>
+  <div class="right">Admin here</div>
+</div>
+
+<div class="container">
+  <div class="grid grid-cols-3 gap-4">
+    <app-chart-header (filterChange)="handleFilterChange('booking', $event)">
+      <div class="body">
+        <canvas
+          class="line"
+          baseChart
+          [data]="bookingData"
+          [options]="lineChartOptions"
+          [type]="lineChartType"
+        ></canvas>
+      </div>
+      <span title>New Bookings</span>
+    </app-chart-header>
+    <app-chart-header (filterChange)="handleFilterChange('booking', $event)">
+      <div class="body">
+        <canvas
+          class="line"
+          baseChart
+          [data]="customerData"
+          [options]="lineChartOptions"
+          [type]="lineChartType"
+        ></canvas>
+      </div>
+      <span title>New Customers</span>
+
+    </app-chart-header>
+    <app-chart-header (filterChange)="handleFilterChange('revenue', $event)"
+      [dateRange]="[
+        { id: 1, name: 'This Month' },
+        { id: 2, name: 'This Quarter' },
+        { id: 3, name: 'This Year' }
+      ]"
+    >
+      <div class="body">
+        <canvas
+          class="line"
+          baseChart
+          [data]="revenueData"
+          [type]="pieChartType"
+          [options]="pieChartOptions"
+        >
+        </canvas>
+      <span title>Revenue</span>
+
+      </div>
+    </app-chart-header>
+  </div>
+  <div class="todo">
+    <app-chart-header (filterChange)="handleFilterChange('todo', $event)">
+      <div class="body">
+        <div class="grid grid-cols-3">
+          <div class="item">
+            <div class="font-bold">Today Pickup: {{pickups.total_items || 0}}</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Station</th>
+                  <th>Vehicle</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of pickups?.items">
+                  <td><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/' + item.booking_number}}">{{ item.booking_number }}</a></td>
+                  <td>{{ item.station }}</td>
+                  <td>{{ item.plate }}</td>
+                  <td><a target="_blank" href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/pickups/' + item.booking_number}}"><button>Pickup</button></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="item">
+            <div class="font-bold">Today Pickup: {{returns.total_items}}</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Station</th>
+                  <th>Vehicle</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of returns?.items">
+                  <td><a  target="_blank" href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/' + item.booking_number}}">{{ item.booking_number }}</a></td>
+                  <td>{{ item.station }}</td>
+                  <td>{{ item.plate }}</td>
+                  <td><a  target="_blank" href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com/pickups/' + item.booking_number}}"><button>Return</button></a></td>
+                </tr>
+            </table>
+          </div>
+          <div class="item">
+            <div class="font-bold">Today Overdue: {{overdue.total_items || 0}}</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Station</th>
+                  <th>Vehicle</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of overdue?.items">
+                  <td class="">{{ item.type }}</td>
+                  <td>{{ item.station }}</td>
+                  <td>{{ item.plate }}</td>
+                  <td><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com' + item.url}}"><button>Task</button></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <span title>To Do</span>
+
+    </app-chart-header>
+  </div>
+</div>

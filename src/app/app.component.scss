@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  box-sizing: border-box;
+  font-family: Open Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, sans-serif;
+  font-size: 14px;
+  color: rgb(106, 106, 106);
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  max-width: 1800px !important;
+  margin: 0 auto;
+  padding: 0 15px 0 15px;
+  .grid {
+    gap: 1.5rem;
+  }
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  padding: 0.7rem;
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent),
+    var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow);
+  z-index: 40;
+
+  .left {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      height: 30px;
+      width: auto;
+      margin-right: 25px;
+    }
+    .toggle-menu {
+      display: flex;
+      align-items: center;
+      i {
+        margin-right: 8px;
+      }
+    }
+  }
+  .right {
+    > * {
+      margin-left: 1.5rem;
+    }
+    .account {
+      font-size: 1.2em;
+    }
+  }
+}
+.line {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 300px;
+}
+
+.grid {
+  margin-top: 20px;
+  gap: 40px;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  > * {
+    &:first-child {
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+  }
+}
+table {
+  text-align: center;
+  thead {
+    tr,
+    th {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    th {
+      padding: 8px 16px;
+    }
+    tr {
+      border-top: 1px solid gainsboro;
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: 1px solid gainsboro;
+      border-top: 1px solid gainsboro;
+      td {
+        padding: 8px 16px;
+
+        &:first-child {
+          color: rgba(107, 187, 174, 1);
+          text-decoration: underline;
+        }
+        button {
+          --tw-border-opacity: 1;
+          border-color: rgba(107, 187, 174, var(--tw-border-opacity));
+          --tw-bg-opacity: 1;
+          background-color: rgba(107, 187, 174, var(--tw-bg-opacity));
+          display: inline-block;
+          border-radius: 0.25rem;
+          border-width: 2px;
+          border-style: solid;
+          padding: 0.2rem 0.3rem;
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: capitalize;
+          line-height: 1.25rem;
+          --tw-text-opacity: 1;
+          color: rgba(255, 255, 255, var(--tw-text-opacity));
+          outline: 2px solid transparent;
+          outline-offset: 2px;
+        }
+      }
+    }
+  }
+  &:last-child{
+    tbody {
+      tr {
+        border-bottom: 1px solid gainsboro;
+        border-top: 1px solid gainsboro;
+        td {
+          padding: 8px 16px;
+  
+          &:first-child {
+            color: rgb(106, 106, 106);
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.todo {
+  margin-top: 20px;
+}
