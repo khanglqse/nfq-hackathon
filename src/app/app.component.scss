@@ -78,6 +78,7 @@
 .item {
   display: flex;
   flex-direction: column;
+  min-height: 320px;
   > * {
     &:first-child {
       margin-bottom: 20px;
