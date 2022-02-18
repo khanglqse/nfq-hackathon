@@ -9,8 +9,7 @@ export class ChartHeaderComponent implements OnInit {
   @Input() dateRange: any = [];
   selectedType: any = 'station';
   @Output() filterChange: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onCountryChange: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onDateChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output() export: EventEmitter<any> = new EventEmitter<any>();
   selectedStation: any;
   selectedCountry: any;
   selectedDate:any = 1;
@@ -40,7 +39,10 @@ export class ChartHeaderComponent implements OnInit {
   handleFilterChange(type: string, item: any) {
     this.filterChange.emit({[type]: item?.id})
   }
-  
-
-
+  handleExportClick() {
+    this.export.emit();
+  }
+  handleTypeChange() {
+    this.filterChange.emit({})
+  }
 }

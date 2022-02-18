@@ -14,12 +14,13 @@
 </div>
 
 <div class="container">
-  <div class="grid grid-cols-3 gap-4">
-    <app-chart-header (filterChange)="handleFilterChange('booking', $event)">
+  <div class="grid  gap-4">
+    <app-chart-header (filterChange)="handleFilterChange('booking', $event)" (export)="downloadImage('booking')">
       <div class="body">
         <canvas
           class="line"
           baseChart
+          #bookingChart
           [data]="bookingData"
           [options]="lineChartOptions"
           [type]="lineChartType"
@@ -27,7 +28,7 @@
       </div>
       <span title>New Bookings</span>
     </app-chart-header>
-    <app-chart-header (filterChange)="handleFilterChange('booking', $event)">
+    <app-chart-header (filterChange)="handleFilterChange('customer', $event)">
       <div class="body">
         <canvas
           class="line"
@@ -56,18 +57,17 @@
           [options]="pieChartOptions"
         >
         </canvas>
-      <span title>Revenue</span>
-
       </div>
+      <span title>Non-Booking Revenue</span>
     </app-chart-header>
   </div>
   <div class="todo">
-    <app-chart-header (filterChange)="handleFilterChange('todo', $event)">
+    <app-chart-header (filterChange)="handleFilterChange('todo', $event)" (export)="exportExcel()">
       <div class="body">
-        <div class="grid grid-cols-3">
+        <div class="grid">
           <div class="item">
             <div class="font-bold">Today Pickup: {{pickups.total_items || 0}}</div>
-            <table>
+            <table id="pickup-table">
               <thead>
                 <tr>
                   <th>Order ID</th>
@@ -123,6 +123,71 @@
                   <td>{{ item.station }}</td>
                   <td>{{ item.plate }}</td>
                   <td><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com' + item.url}}"><button>Task</button></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="item">
+            <div class="font-bold">Return But Open Amount: {{returnOpen.total_items || 0}}</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Amount</th>
+                  <th>Customer</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of returnOpen?.items">
+                  <td class="">{{ item.order_number }}</td>
+                  <td>{{ item.open_amount }}</td>
+                  <td>{{ item.customer }}</td>
+                  <td><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com' + item.url}}"><button>Payment</button></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="item">
+            <div class="font-bold">Damage But No Damage Order Created: {{damage.total_items || 0}}</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Station</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of damage?.items">
+                  <td class="">{{ item.damage_id }}</td>
+                  <td>{{ item.station }}</td>
+                  <td>{{ item.damage_status.replace("_", ' ') }}</td>
+                  <td><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com' + item.url}}"><button>Damage</button></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="item">
+            <div class="font-bold">Voucher Expires Within Next 3 Months: {{voucher.total_items || 0}}</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Remaining</th>
+                  <th>Expire On</th>
+                  <th>Currency</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of voucher?.items">
+                  <td class="">{{ item.code.replace('VOUCHER', '') }}</td>
+                  <td>{{ item.remaining }}</td>
+                  <td>{{ item.end_date }}</td>
+                  <td>{{ item.currency }}</td>
+                  <td><a target="_blank"  href="{{'https://rp1-6261-backoffice.eu.dev.roadsurfer.com' + item.url}}"><button>Voucher</button></a></td>
                 </tr>
               </tbody>
             </table>

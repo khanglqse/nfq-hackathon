@@ -16,7 +16,13 @@
   margin: 0 auto;
   padding: 0 15px 0 15px;
   .grid {
-    gap: 1.5rem;
+    gap: 3rem 3rem;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media screen and (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr !important;
   }
 }
 .navbar {
@@ -85,10 +91,9 @@ table {
     tr,
     th {
       font-weight: bold;
-      font-size: 16px;
     }
     th {
-      padding: 8px 16px;
+      padding: 8px 10px;
     }
     tr {
       border-top: 1px solid gainsboro;

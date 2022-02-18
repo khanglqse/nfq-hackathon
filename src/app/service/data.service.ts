@@ -13,10 +13,10 @@ export class DataService {
   }
 
   getBooking(filter: any) {
-    return this.http.get('', {params: {...filter}})
+    return this.http.get(`${this.endpoint}/hackathon/new-bookings`, {params: filter.station_id || filter.country_id ? filter : null})
   }
   getCustomer(filter: any) {
-    return this.http.get(`${this.endpoint}/hackathon/new-customers`, {params: {...filter}})
+    return this.http.get(`${this.endpoint}/hackathon/new-customers`, {params: filter.station_id || filter.country_id ? filter : null})
   }
   getRevenue(filter: any) {
     return this.http.get(`${this.endpoint}/hackathon/revenue/${filter.date}`)
